@@ -1,0 +1,77 @@
+#Saisie de la date :
+jour = input("Saisissez le jour : ")
+mois = int(input("Saisissez le mois : "))
+an = input("Saisissez l'année : ")
+jour = float(jour)
+
+recupan = float(an[2:4]) #Récupération des deux derniers digit de l'année
+recupan2 = int(an[0:2])
+
+result = recupan + (recupan/4) + jour
+
+#Calcul de la valeur du mois :
+if mois == 2:
+    result = result + 3
+elif mois == 3:
+    result = result + 3
+elif mois == 4:
+    result = result + 6
+elif mois == 5:
+    result = result + 1
+elif mois == 6:
+    result = result + 4
+elif mois == 7:
+    result = result + 6
+elif mois == 8:
+    result = result + 2
+elif mois == 9:
+    result = result + 5
+elif mois == 11:
+    result = result + 3
+elif mois == 12:
+    result = result + 5
+#print(result)
+
+#Calcul année bissextile ou non
+def bisex(result):
+    mod4 = int(an) % 4
+    mod100 = int(an) % 100
+    mod400 = int(an) % 400
+
+    if mod4 == 0 and mod100 != 0 and mois == 1 or mois == 2:
+        result = result - 1
+    elif mod100 == 0 and mod400 == 0 and mois == 1 or mois == 2:
+        result = result - 1
+    return result
+
+#Calcul de le valeur du siècle
+if recupan2 == 16:
+    result = result + 6
+elif recupan2 == 17:
+    result = result + 4
+elif recupan2 == 18:
+    result = result + 2
+elif recupan2 == 19:
+    result = result
+elif recupan2 == 20:
+    result = result + 6
+elif recupan2 == 21:
+    result = result + 4
+
+mod7 = int(result % 7)
+
+#Détermination du jour:
+if mod7 == 0:
+    print("C'était un Dimanche !")
+elif mod7 == 1:
+    print("C'était un Lundi !")
+elif mod7 == 2:
+    print("C'était un Mardi !")
+elif mod7 == 3:
+    print("C'était un Mercredi !")
+elif mod7 == 4:
+    print("C'était un Jeudi !")
+elif mod7 == 5:
+    print("C'était un Vendredi !")
+elif mod7 == 6:
+    print("C'était un Samedi !")
